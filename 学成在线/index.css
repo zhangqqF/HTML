@@ -1,0 +1,111 @@
+
+
+/* 设定默认 */
+* {
+    margin: 0;
+    padding: 0;
+
+    /* 內减模式 */
+    box-sizing: border-box;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+
+body {
+    background-color: #f3f5f7;
+}
+
+
+/* 版心 */
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+
+}
+
+/* 头部 42是logo的高度*/
+.header {
+    margin: 30px auto;
+    height: 42px;
+}
+
+
+h1 {
+    float: left;
+}
+
+/* 导航 */
+.nav {
+    float: left;
+    margin-left: 40px;
+    height: 42px;
+}
+
+/* 用浮动使导航的列表标签横排 */
+.nav li {
+    float: left;
+}
+.nav li a {
+    margin: auto 15px;
+    line-height: 42px;
+    color: #050505;
+    text-align: center;
+    font-size: 18px;
+}
+.nav li a:hover {
+    color: #00a4ff;
+    border-bottom: 2px solid #00a4ff;
+}
+
+/* -------------- 搜索 -------------- */
+.search {
+    float: left;
+    margin: auto 57px;
+    width: 410px;
+}
+.search input {
+    float: left;
+    width: 360px;
+    height: 42px;
+    border: #00a4ff 2px solid;
+    padding-left: 16px;
+}
+.search input::placeholder {
+    color: #757575;
+    font-size: 12px;
+}
+/* 用背景图片而非img来设置搜索按钮 */
+.search button {
+    width: 50px;
+    height: 42px;
+    border: none;
+    background-image: url(./img/btn.png);
+}
+/* 图片实际h=40，怎么使搜索框垂直居中 */
+
+
+/* -------------- 用户 -------------- */
+.user {
+    float: right;
+    margin-right: 10px;
+    height: 42px;
+    line-height: 42px;
+}
+.user img {
+    float: left;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid #f3f5f73a;
+}
+.user span {
+    /* 浮动来消除行内快换行 */
+    float: left;
+    padding-left: 10px;
+    font-size: 12px;
+}
