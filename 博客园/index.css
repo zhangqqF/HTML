@@ -1,0 +1,84 @@
+
+/* ==================== default ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #f0eef5;
+    font-family: 'PingFang SC','Microsoft YaHei','Helvetica Neue','Helvetica','Arial',sans-serif;
+}
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+
+
+/* ==================== header ==================== */
+.header {
+    margin: 0 auto;
+    width: 1200px;
+    height: 314px;
+    background-image: url(./img/title-yellow.png);
+}
+h1 {
+    width: 336px;
+    height: 175px;
+    position: relative;
+    top: 21px;
+    left: 5px;
+    font-size: 30px;
+    text-align: center;
+    background-image: url(./img/title-background.png);
+}
+h1 a {
+    display: inline-block;
+    position: relative;
+    top: 61px;
+    line-height: 100px;
+    color: #fff;
+    font-weight: normal;
+}
+
+
+/* ==================== navigator ==================== */
+.nav {
+    margin: 0 auto;
+    height: 62px;
+    background-color: #169fe6;
+}
+.nav ul {
+    margin: 0 auto;
+    width: 1200px;
+}
+.nav li {
+    float: left;
+    display: block;
+}
+.nav a {
+    margin: 1px auto;
+    display: block;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #fff;
+    text-shadow: 3px 3px 3px #000;
+}
+.nav a:hover {
+    background-color: #fff;
+    color: #169fe6;
+}
+
+/* ==================== topic ==================== */
+.topic {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 60%;
+    background-color: #fff;
+    padding: 20px;
+    border: solid 1px #dedede;
+
+}
