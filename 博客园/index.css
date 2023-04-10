@@ -75,10 +75,52 @@ h1 a {
 /* ==================== topic ==================== */
 .topic {
     margin: 0 auto;
+    width: 100%;
+}
+.topic .paper {
+    float: left;
     margin-top: 20px;
     width: 60%;
     background-color: #fff;
     padding: 20px;
     border: solid 1px #dedede;
+}
 
+
+/* ==================== left ==================== */
+.topic .left {
+    float: left;
+    margin-top: 20px;
+    padding: 20px;
+    width: 20%;
+
+    color: #169fe6;
+    font-size: 16px;
+    font-family: 'Source Code Pro', Menlo, Consolas, Monaco, monospace !important;
+}
+.left h1 > 
+
+
+
+
+/* ==================== right ==================== */
+.topic .right {
+    float: left;
+    width: 20%;
+    margin-top: 80px;
+}
+.topic .right .face {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-image: url(./img/xy.png);
+    background-size: cover;
+}
+.topic .right audio {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 250px;
+    height: 30px;
+    display: block;
 }
