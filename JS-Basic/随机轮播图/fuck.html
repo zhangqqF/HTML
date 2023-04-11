@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 500px;
+            height: 400px;
+            margin: 40px auto;
+            background-color: #555;
+            background-image: url(./img/1.jpg);
+            background-size: cover;
+        }
+        span {
+            position: absolute;
+            display: block;
+            /* font-style: italic; */
+            color: white;
+            margin-top: 320px;
+            margin-left: 40px;
+        }
+        ul {
+            margin-left: 80px;
+        }
+        ul li {
+            float: left;
+            width: 30px;
+            height: 60px;
+            line-height: 60px;
+            margin-top: 330px;
+        }
+        ul li::marker {
+            /* display: inline-block; */
+            color: white;
+            font-size: 30px;
+        }
+        .active::marker {
+            float: left;
+            font-size: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span>笔底烟云过境时，正我逍遥处</span>
+        <ul>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+        const imgs = [
+            {'img': './img/1.jpg', 'title': '笔底烟云过境时，正我逍遥处'},
+            {'img': './img/2.jpg', 'title': '塞外金黄日犹烈'},
+            {'img': './img/3.jpg', 'title': '湖光山色两相和，潭面无风镜未磨'},
+            {'img': './img/4.jpg', 'title': '九天无人迹，仙女共沐期'},
+            {'img': './img/5.jpg', 'title': '西风残照，汉家陵阙'},
+        ]
+        box = document.querySelector('.box')
+        for (let i = 0; i < imgs.length; i++) {
+            box.style.backgroundImage = `url(${imgs[i]['img']})`
+            document.querySelector('span').innerHTML = imgs[i]['title']
+            document.querySelectorAll('li')[i].classList.toggle('active')
+            break
+        }
+    </script>
+
+</body>
+</html>

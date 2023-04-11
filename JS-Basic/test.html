@@ -6,49 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        h2 {
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            display: flex;
+            width: 700px;
+            height: 300px;
+            border-left: 1px solid pink;
+            border-bottom: 1px solid pink;
+            margin: 50px auto;
+            justify-content: space-around;
+            align-items: flex-end;
             text-align: center;
         }
-        table {
-            /* 合并边框 */
-            border-collapse: collapse;
-            margin: 0 auto;
-            text-align: center;
+        .box > div {
+            display: flex;
+            width: 50px;
+            background-color: pink;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        table, th, td {
-            border: solid 1px #000;
+        .box div span {
+            margin-top: -20px;
         }
-        th {
-            padding: 5px 30px;
+        .box div h4 {
+            margin-bottom: -30px;
+            width: 80px;
+            margin-left: -10px;
         }
     </style>
 </head>
 <body>
-    <h2>订单确认</h2>
     <script>
-        let price = prompt('price')
-        let number = prompt('number')
-        let address = prompt('address')
-        let total = price * number
+        let arr = []
+        for (let i = 1; i <= 4; i++) {
+            arr.push(+prompt(`Pls enter the value of the seasion ${i}`))
+        }
 
-        document.write(`
-            <table>
-                <tr>
-                    <th>商品名称</th>
-                    <th>商品价格</th>
-                    <th>商品数量</th>
-                    <th>总价</th>
-                    <th>收货地址</th>
-                </tr>
-                <tr>
-                    <td>小米PLus</td>
-                    <td>${price}元</td>
-                    <td>${number}</td>
-                    <td>${total}元</td>
-                    <td>${address}</td>
-                </tr>
-            </table>
-        `)
+        document.write(`<div class="box">`)
+
+        for (let i = 0; i < arr.length; i++) {
+            document.write(`
+            <div style="height: ${arr[i]}px;">
+                <span>${arr[i]}</span>
+                <h4>Seasion ${i}</h4>
+            </div>`)
+            console.log(arr[i])
+        }
+
+        document.write(`</div>`)
     </script>
 </body>
 </html>
