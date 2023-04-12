@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .mi {
+            position: relative;
+            width: 223px;
+            margin: 100px auto;
+        }
+
+        .mi input {
+            width: 223px;
+            height: 48px;
+            padding: 0 10px;
+            font-size: 14px;
+            line-height: 48px;
+            border: 1px solid #e0e0e0;
+            outline: none;
+        }
+
+        .mi .search {
+            border: solid 1px #ff6700;
+        }
+
+        .result-list {
+            position: absolute;
+            left: 0;
+            top: 48px;
+            width: 223px;
+            border: solid 1px #ff6700;
+            border-top: 0;
+            background: #fff;
+
+            display: none;         /* 先不显示，用js操作 */
+
+        }
+
+        .result-list a {
+            display: block;
+            padding: 6px 15px;
+            font-size: 12px;
+            color: #424242;
+            text-decoration: none;
+        }
+
+        .result-list a:hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="mi">
+        <input type="search" placeholder="xiao mi desktop">
+        <ul class="result-list">
+            <li><a href="#">all goods</a></li>
+            <li><a href="#">xiaomi phone</a></li>
+            <li><a href="#">xiaomi desktop</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const input = document.querySelector('[type=search]')
+        input.addEventListener('focus', () => {
+            const list = document.querySelector('.result-list')
+            list.style.display = 'block'
+            input.classList.add('search')
+        })
+        input.addEventListener('blur', () => {
+            const list = document.querySelector('.result-list')
+            list.style.display = 'none'
+            input.classList.remove('search')
+        })
+    </script>
+</body>
+</html>

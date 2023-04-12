@@ -24,7 +24,7 @@ li {
     height: 314px;
     background-image: url(./img/title-yellow.png);
 }
-h1 {
+.header h1 {
     width: 336px;
     height: 175px;
     position: relative;
@@ -34,7 +34,7 @@ h1 {
     text-align: center;
     background-image: url(./img/title-background.png);
 }
-h1 a {
+.header h1 a {
     display: inline-block;
     position: relative;
     top: 61px;

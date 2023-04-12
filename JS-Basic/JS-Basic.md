@@ -521,3 +521,38 @@ div.classList.toggle('box')			// 切换，有就删除，没有就追加
 
 [案例-年会抽奖](./抽奖/fuck.html)
 
+### 获取表单属性
+
+表单.value = 'username'
+        .type = 'password'
+        .checked = true
+        .disable
+
+### 间歇函数
+
+setInterval(函数, time/ms)
+
+```javascript
+setInterval(function () {
+    console.log('fuck')
+}, 1000)
+```
+
+### 事件监听
+
+```javascript
+元素对象.addEventListener('事件类型', 执行函数)
+```
+
+- 鼠标事件：
+  - click
+  - mouseenter             鼠标经过
+  - mouseleave             鼠标离开
+- 焦点事件
+  - focus         获得焦点
+  - blur           失去焦点
+- 键盘事件
+  - keydown
+  - keyup
+- 文本事件
+  - input

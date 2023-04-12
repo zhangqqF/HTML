@@ -1,0 +1,94 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 总框 */
+.slider {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 560px;
+    height: 400px;
+    overflow: hidden;
+}
+
+/* 图片框 */
+.slider-wrapper {
+    width: 100%;
+    height: 320px;
+}
+
+/* 图片 */
+.slider-wrapper img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 底部框 */
+.slider-footer {
+    height: 80px;
+    background-color: rgb(100, 67, 68);
+    padding: 12px 12px 0 12px;
+    position: relative;
+}
+
+/* 切换符框 */
+.slider-footer .toggle {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    display: flex;
+}
+
+/* 切换符 */
+.slider-footer .toggle button {
+    margin-right: 12px;
+    width: 28px;
+    height: 28px;
+    appearance: none;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 鼠标覆盖时增加透明度 */
+.slider-footer .toggle button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.slider-footer p {
+    margin: 0;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* li 框 */
+.slider-indicator {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.slider-indicator li {
+    width: 8px;
+    height: 8px;
+    margin: 4px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.slider-indicator li.active {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+}

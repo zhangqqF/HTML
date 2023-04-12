@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="suiji.css">
+</head>
+<body>
+    <div class="slider">
+        <div class="slider-wrapper">
+            <img src="./img/1.jpg" alt="" />
+        </div>
+        <div class="slider-footer">
+            <p>笔底烟云过境时，正我逍遥处</p>
+            <ul class="slider-indicator">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="toggle">
+                <button class="prev">&lt;</button>
+                <button class="next">&gt;</button>
+            </div>
+        </div>
+      </div>
+
+    <script>
+        const imgs = [
+            {'img': './img/1.jpg', 'title': '眼底烟云过境时，正我逍遥处'},
+            {'img': './img/2.jpg', 'title': '塞外金黄日犹烈'},
+            {'img': './img/3.jpg', 'title': '湖光山色两相和，潭面无风镜未磨'},
+            {'img': './img/4.jpg', 'title': '九天无人迹，仙女共沐期'},
+            {'img': './img/5.jpg', 'title': '西风残照，汉家陵阙'},
+        ]
+
+        let time = setInterval(() => {
+            i = parseInt(Math.random()*imgs.length)
+            img = document.querySelector('img')
+            img.src = imgs[i]['img']
+            document.querySelector('p').innerHTML = imgs[i]['title']
+            // document.querySelectorAll('li')[i].classList.add('active')
+            document.querySelectorAll('li')[i].classList.add('active')
+        }, 1000)
+        
+    </script>
+
+</body>
+</html>
