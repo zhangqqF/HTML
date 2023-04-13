@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zhangqq</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="clock.css">
+    
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script>
+    $(document).ready(function(e) {
+        $("ul li").click(function(e) {
+            $(this).children("ul").toggle();
+            e.stopPropagation(); //阻止冒泡事件
+        });
+    });
+    </script>
+
+</head>
+<body>
+    <!-- header -->
+    <div class="header">
+        <!-- clock -->
+        <div class="clock">
+            <div class="ring ring1">
+                <div class="ring ring2"></div>
+                <!-- 刻度线 -->
+                <div class="line line00"></div>
+                <div class="line line01"></div>
+                <div class="line line02"></div>
+                <div class="line line03"></div>
+                <div class="line line04"></div>
+                <div class="line line05"></div>
+                <div class="line line06"></div>
+                <div class="line line07"></div>
+                <div class="line line08"></div>
+                <div class="line line09"></div>
+                <div class="line line10"></div>
+                <div class="line line11"></div>
+    
+                <!-- 指针 -->
+                <div class="pointor hour"></div>
+                <div class="pointor minute"></div>
+                <div class="pointor second"></div>
+    
+                <!-- 圆心 -->
+                <div class="circ"></div>
+            </div>
+        </div>
+        <script src="clock.js"></script>
+
+        <h1><a href="#">zhangqq02</a></h1>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="#">CAE</a></li>
+            <li><a href="#">CFD</a></li>
+            <li><a href="#">OTHER</a></li>
+        </ul>
+    </div>
+
+
+    <!-- topic -->
+    <div class="topic">
+        <div class="left">
+            <ul>
+                <li>Spring
+                    <li>step1</li>
+                    <li>step2</li>
+                </li>
+                <li>border</li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h1 id='spring-stiffness-doe-analysis-by-ansa'>Spring Stiffness DOE Analysis by ANSA</h1>
+            <blockquote><p>zhangqq<br>
+            Mar 31, 2023<br>
+            Chongqing</p>
+            </blockquote>
+            <hr />
+            
+            <h2 id='description'>Description</h2>
+            <p>This tutorial will instruct you how to do DOE analyze in ANSA through a simple exercise of Spring Stiffness.</p>
+            <p><strong>Some Specifications</strong></p>
+            <ul>
+            <li>Use ABAQUS as the solver.</li>
+            <li>ANSA v2022 or later are new stage versions, which a few differences to the previous.</li>
+            <li>The paper use ANSA v2023.0.0 default, and you can use the earlier as well.</li>
+
+            </ul>
+            <h2 id='step-1-open-the-initial-model-and-check'>Step 1 Open the Initial Model and Check</h2>
+            <p class='p-img'><img src=".\img\img.gif" alt="image-20230331160027963" style="zoom: 33%;" /></p>
+            <ul>
+            <li><p>Launch ANSA v2023.0.0</p>
+            </li>
+            <li><p>Input <a href='SPRING_compress_20230329.inp'>SPRING_compress_20230329.inp</a></p>
+            <ul>
+            <li>The file can be successfully simulated.</li>
+            <li>The model has three steps, 0.1 mm, 0.2 mm and 0.3 mm of compress, actually we only need the step 3.</li>
+            <li>D&amp;R hope the react force of the load point between 60 N to 80 N under 0.3 mm compress in vertical.</li>
+            <li>The thickness of the spring is 0.1 mm, and the height (the gap between the two plates) is 0.4 mm now.</li>
+
+            </ul>
+            </li>
+            <li><p>Check the Output Requests, and it should be.</p>
+            <pre><code class='language-inp' lang='inp'>** set the interval to 0.1 so the order of the lastest interation of the step 3 is 33
+            *OUTPUT, FIELD, TIME INTERVAL=0.1
+            *ELEMENT OUTPUT
+                MISES,
+            *NODE OUTPUT
+                U,
+            ** must output the RF of the Loadpoint in the FILED, cannot RF3 here but HISTORY can be
+            *NODE OUTPUT, NSET=Loadpoint
+                RF,
+
+            ** for create curves, unnecessary for DOE
+            *OUTPUT, HISTORY, TIME INTERVAL=0.1
+            *NODE OUTPUT, NSET=Loadpoint
+                RF,
+                UT,
+            </code></pre>
+            <ul>
+            <li>This is important of set the filed output interval to 0.1.</li>
+
+            </ul>
+            </li>
+
+            </ul>
+            <h2 id='step-2-create-morph-parameters'>Step 2 Create Morph Parameters</h2>
+            <p>In this step, we will create a morph parameter for the upper plate and the spring respectively to extend up.</p>
+            <ul>
+            <li><p>Switch to the <strong>Classic Morph</strong> desk in the ANSA, then click the <strong>Parameters</strong> button under <strong>Controls</strong> class.</p>
+            </li>
+            <li><p><strong>New</strong> to create, following below.</p>
+            <p class='p-img'><img src=".\img\image-20230331170455988.png" referrerpolicy="no-referrer" alt="image-20230331170455988"></p>
+            <ul>
+            <li><p>Select the all element of the spring for Morphed Entities, outer ring nodes for Bounds, and inner ring nodes for Control Entities.</p>
+            <p class='p-img'><img src=".\img\image-20230331170905824.png" referrerpolicy="no-referrer" alt="image-20230331170905824"></p>
+            <p class='p-img'><img src=".\img\image-20230331170736966.png" alt="image-20230331170736966" style="zoom:50%;" /></p>
+            </li>
+            <li><p>Create morph parameter for the upper plate same as the spring. All elements of the upper plate for Morphed Entities, none for Bounds, and all nodes of the upper plate for Control Entities.</p>
+            <p class='p-img'><img src=".\img\image-20230331171418972.png" referrerpolicy="no-referrer" alt="image-20230331171418972"></p>
+            </li>
+
+            </ul>
+            </li>
+
+            </ul>
+            <h2 id='step-3-create-a-task'>Step 3 Create a Task</h2>
+            <ol start='' >
+            <li><p><strong>Ctrl+T</strong> to open Task Manager window, and click <strong>Optimization Task</strong> to create.</p>
+            <p class='p-img'><img src=".\img\image-20230331172054352.png" referrerpolicy="no-referrer" alt="image-20230331172054352"></p>
+            <p class='p-img'><img src=".\img\image-20230331172335046.png" referrerpolicy="no-referrer" alt="image-20230331172335046"></p>
+            </li>
+            <li><p>Disable the <strong>DVFile.txt</strong> and delete the <strong>DESIGN_VARIABLE_1</strong> through right click.</p>
+            </li>
+            <li><p>Right click the <strong>Pre-Processing</strong> and use <strong>from parameters</strong> to create design variables, Select the two parameters and <strong>Create one for all</strong>.</p>
+            <p class='p-img'><img src=".\img\image-20230331172641974.png" referrerpolicy="no-referrer" alt="image-20230331172641974"></p>
+            <p class='p-img'><img src=".\img\image-20230331172840005.png" referrerpolicy="no-referrer" alt="image-20230331172840005"></p>
+            </li>
+            <li><p>Rename the design variable to <em>Extend</em></p>
+            <p class='p-img'><img src=".\img\image-20230331173049045.png" referrerpolicy="no-referrer" alt="image-20230331173049045"></p>
+            </li>
+            <li><p>Right click <strong>Extend</strong> then <strong>Edit</strong> to edit as the following below.</p>
+            <p class='p-img'><img src=".\img\image-20230331173331756.png" referrerpolicy="no-referrer" alt="image-20230331173331756"></p>
+            </li>
+            <li><p>Edit the <strong>FE_output</strong>, select ABAQUS as the solver and set inp output.</p>
+            </li>
+            <li><p>Insert a <strong>Solver</strong>, and click the warning icon to define the ABAQUS path. (is the setting of define ABAQUS path effect the model or ANSA? should be ANSA), the path generally is <code>...\SIMULIA\Commands\abaqus.bat</code>.</p>
+            <p class='p-img'><img src=".\img\image-20230331173824989.png" referrerpolicy="no-referrer" alt="image-20230331173824989"></p>
+            <p class='p-img'><img src=".\img\image-20230331174022993.png" referrerpolicy="no-referrer" alt="image-20230331174022993"></p>
+            <p class='p-img'><img src=".\img\image-20230331174242845.png" referrerpolicy="no-referrer" alt="image-20230331174242845"></p>
+            </li>
+            <li><p>Insert a <strong>Post-Processing</strong>, here is a problem, generally, we can click the META icon <img src="./img/meta_favicon.png"  /> to run the baseline and it automatically open the META when finished, so we can define the response in the META. But META flashback in v2022 or later and no any response in the earlier version even the run finished successfully. That‘s probably license mater, or the issue of the don&#39;t support <code>odb</code>.</p>
+            <p class='p-img'><img src=".\img\image-20230331174911003.png" referrerpolicy="no-referrer" alt="image-20230331174911003"></p>
+            <p class='p-img'><img src=".\img\image-20230331175052197.png" referrerpolicy="no-referrer" alt="image-20230331175052197"></p>
+            </li>
+            <li><p>So anyway, we need to create a session file manually, or copy a existing to modify. In this tutorial, the contents of the session file <code>response.ses</code> created would be.</p>
+            <pre><code># To run this session: meta_post -noses -nolog -b -s this_ses.ses /path/to/iteration/results/ meta_iteration_results.txt
+            opt var __OPT_RESULTS_DIR__ $0
+            opt var __OPT_RESPONSE_FILE__ $1
+            $ Session File written by META_post version:20.1.4
+
+
+            # read the model, the Loadpoint not included in odb but inp
+            read geom Auto &quot;$__OPT_RESULTS_DIR__/SPRING_compress_ANSAv2023.0.0_20230331.inp&quot;
+
+
+            # read the RF3 of the lastest iteration of the lastest step, all three step3, time interval is 0.1 for output
+            read dis Abaqus &quot;$__OPT_RESULTS_DIR__/SPRING_compress_ANSAv2023.0.0_20230331.odb&quot; 33 Displacements
+            read onlyfun Abaqus &quot;$__OPT_RESULTS_DIR__/SPRING_compress_ANSAv2023.0.0_20230331.odb&quot; 33 ReactionForces,Direction-Z
+
+
+            # annotation for RF3 of the Loadpoint in the lastest iteration
+            0:options state variable &quot;serial=1&quot;
+            # annotation add onelem advfilter active add:Elements:centroid.func.scalar.max::Max 1
+            # 0:options state &quot;Time nearest 3.000000000000000&quot;
+            annotation add onnode advfilter active add:Nodes:id:==1426:Keep All
+
+
+            # add response of RF3
+            0:options state variable &quot;serial=1&quot;
+            read ses OptimizerSetupInit.ses
+            opt var add __tmp__add__ listannotation
+            read ses OptimizerSetupResponseAdd.ses
+            options var string __tmp__pickannotation__ 1
+            read ses OptimizerSetupResponseAdd.ses
+            opt var add __tmp__update__ RF3
+            read ses OptimizerSetupRenameResponse.ses
+
+
+            # save the response to a result file
+            read ses OptimizerSetupSaveResponses.ses
+
+            </code></pre>
+            </li>
+            <li><p>Place the file <code>response.ses</code> in the same path as the ANSA model, and edit the Post-Processing in the Task again, you will can see the blanks following both the Session file and Response file is filled automatically, and the META icon disappeared.</p>
+            <p class='p-img'><img src=".\img\image-20230331230653452.png" referrerpolicy="no-referrer" alt="image-20230331230653452"></p>
+            </li>
+            <li><p>Click OK, the the warnings and errors of the Task will disappear.</p>
+            <p class='p-img'><img src=".\img\image-20230331231347164.png" referrerpolicy="no-referrer" alt="image-20230331231347164"></p>
+            </li>
+            <li><p>Save the model.</p>
+            </li>
+
+            </ol>
+            <h2 id='step-4-doe-setup-and-run'>Step 4 DOE Setup and Run</h2>
+            <ol start='' >
+            <li><p>Click the icon <img src="C:\Users\zhangqq\Desktop\Spring_Stiffness_DOE_SOLIDElem\img\image-20230331232023924.png" referrerpolicy="no-referrer" alt="image-20230331232023924"> in the top tollbar to open the Optimization Tool window. Click the <strong>Baseline</strong> to run baseline.</p>
+            <p class='p-img'><img src=".\img\image-20230331234444240.png" referrerpolicy="no-referrer" alt="image-20230331234444240"></p>
+            <ul>
+            <li><p>After finished, a folder of <code>Baseline_Run_0001</code> will created automatically in the path same as the ANSA model. Copy the file <code>response.ses.result</code> in the folder to the path of the same as the ANSA model.</p>
+            <p class='p-img'><img src=".\img\image-20230331234902710.png" referrerpolicy="no-referrer" alt="image-20230331234902710"></p>
+            </li>
+            <li><p><code>response.ses.result</code> contents is.</p>
+            <pre><code> #OptimizerSetup Response &amp; history File created by META post
+            RESPONSES
+            1,RF3,-506.577454
+            END
+            </code></pre>
+            </li>
+
+            </ul>
+            </li>
+            <li><p>Switch to <strong>DOE setup</strong> tab, remain the <strong>DOE Algorithm</strong> default for <strong>Uniform Latin Hypercube</strong>, click <strong>Generate</strong> and select <strong>All</strong> to generate the experiments. You can delete the experiments or modify manually.</p>
+            <p class='p-img'><img src=".\img\image-20230331232221236.png" referrerpolicy="no-referrer" alt="image-20230331232221236"></p>
+            </li>
+            <li><p>Click the <strong>Run options</strong> then <strong>Animation</strong> then select <strong>Transparent</strong> for the <em>Background color and gradient</em>.</p>
+            <p class='p-img'><img src=".\img\image-20230331233132934.png" referrerpolicy="no-referrer" alt="image-20230331233132934"></p>
+            </li>
+            <li><p>Add Constraints as following.</p>
+            <p class='p-img'><img src=".\img\image-20230331235417656.png" referrerpolicy="no-referrer" alt="image-20230331235417656"></p>
+            </li>
+            <li><p>Click <strong>Start</strong> to run the DOE.</p>
+            </li>
+
+            </ol>
+            <h2 id='step-5-results-check'>Step 5 Results Check</h2>
+            <ol start='' >
+            <li><p>Switch to the <strong>Results</strong> tab after run finished.</p>
+            <p class='p-img'><img src=".\img\image-20230401005015322.png" referrerpolicy="no-referrer" alt="image-20230401005015322"></p>
+            </li>
+            <li><p>End</p>
+            </li>
+
+            </ol>
+        </div>
+        <div class="right">
+            <div class="face"></div>
+            <audio src="./MP3/Moonlight Shadow - Dana Winner.mp3" controls loop autoplay></audio>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<!--
+    目录
+    1. 可收缩
+    2. 次级目录缩进
+    3. 文章当前所在目录需特别显示
+-->

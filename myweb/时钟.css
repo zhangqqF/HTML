@@ -5,35 +5,66 @@
     box-sizing: border-box;
 }
 
-body {
+.clock {
     display: flex;
+    margin: 0 auto;
 }
 
-.box {
+.ring {
     position: relative;
     width: 300px;
     height: 300px;
     border-radius: 50%;
     border: 7px solid #999999;
-    box-shadow:inset -20px -20px 20px rgba(0, 0, 0, 0.7);
 }
-.box .line {
+.ring1 {box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.7); border: none;}
+.ring2 {box-shadow: inset 20px 20px 30px rgba(0, 0, 0, 0.7);}
+
+
+
+.clock .line {
     position: absolute;
-    left: 50px;
+    left: 150px;
     transform: translate(-50%);
-    top: 0px;
+    top: 7px;
     width: 5px;
     height: 30px;
-    background-color: #412d2d;
+    background-color: #302f2f;
     transform-origin: 2.5px 143px;
 }
+.clock .line01 {transform: translate(-50%) rotate( 30deg);}
+.clock .line02 {transform: translate(-50%) rotate( 60deg);}
+.clock .line03 {transform: translate(-50%) rotate( 90deg);}
+.clock .line04 {transform: translate(-50%) rotate(120deg);}
+.clock .line05 {transform: translate(-50%) rotate(150deg);}
+.clock .line06 {transform: translate(-50%) rotate(180deg);}
+.clock .line07 {transform: translate(-50%) rotate(210deg);}
+.clock .line08 {transform: translate(-50%) rotate(240deg);}
+.clock .line09 {transform: translate(-50%) rotate(270deg);}
+.clock .line10 {transform: translate(-50%) rotate(300deg);}
+.clock .line11 {transform: translate(-50%) rotate(330deg);}
 
-.inner {
+
+/* 指针 */
+.clock .pointor {
     position: absolute;
-    width: 300px;
-    height: 300px;
+    left: 150px;
+    top: 150px;
+    transform: translate(-50%, -100%);
+    transform-origin: center top;
+}
+.clock .hour {width: 8px; height: 60px; background: #000;}
+.clock .minute {width: 6px; height: 80px; background: #000;}
+.clock .second {width: 3px; height: 100px; background: red;}
+
+.clock .circ {
+    position: absolute;
+    left: 150px;
+    top: 150px;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    border: 7px solid #999999;
-    box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.7);
+    background: #000;
 }
 

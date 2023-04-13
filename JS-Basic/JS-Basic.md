@@ -504,12 +504,12 @@ a.innerText = 'Fuck you'			// 改变标签内容
 a.innerHTML = '<i>Fuck you</i>'		// 改变标签内容和样式
 
 
-box = document.querySelector('.box')
+let box = document.querySelector('.box')
 box.style.width = '200px'			// 修改box的样式属性，名称带有‘-’的属性采用小驼峰命名
 
 
 const div = document.querySelector('div')
-div.className = 'box'				// 赋予div样式box，会覆盖之前的class
+div.className = 'box'				// 赋予div样式box，会抹掉之前的class
 div.classList.add('box')			// 追加类box
 div.classList.remove('box')			// 移除
 div.classList.toggle('box')			// 切换，有就删除，没有就追加

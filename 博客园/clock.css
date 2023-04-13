@@ -1,0 +1,146 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+.clock {
+    /* display: flex; */
+    float: left;
+    margin-top: 157px;
+    transform: translate(0, -50%);
+    margin-left: -250px;
+}
+
+.ring {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #d2d2d2;
+}
+/* .ring1 {box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.7); border: none;}
+.ring2 {box-shadow: inset 20px 20px 30px rgba(0, 0, 0, 0.7);} */
+.ring1 {border: none;}
+.ring2 {box-shadow: inset 0  10px 30px rgba(255,255,255, 0.7),
+                    inset 0 -10px 30px rgba(255,255,255, 0.7),
+                    inset  10px 0 30px rgba(255,255,255, 0.7),
+                    inset -10px 0 30px rgba(255,255,255, 0.7);}
+
+
+
+.clock .line {
+    position: absolute;
+    left: 75px;
+    transform: translate(-50%);
+    top: 14px;
+    width: 2px;
+    height: 8px;
+    background-color: #302f2f;
+    transform-origin: 2px 61px;
+}
+.clock .line01 {transform: translate(-50%) rotate( 30deg);}
+.clock .line02 {transform: translate(-50%) rotate( 60deg);}
+.clock .line03 {transform: translate(-50%) rotate( 90deg);}
+.clock .line04 {transform: translate(-50%) rotate(120deg);}
+.clock .line05 {transform: translate(-50%) rotate(150deg);}
+.clock .line06 {transform: translate(-50%) rotate(180deg);}
+.clock .line07 {transform: translate(-50%) rotate(210deg);}
+.clock .line08 {transform: translate(-50%) rotate(240deg);}
+.clock .line09 {transform: translate(-50%) rotate(270deg);}
+.clock .line10 {transform: translate(-50%) rotate(300deg);}
+.clock .line11 {transform: translate(-50%) rotate(330deg);}
+
+
+/* 指针 */
+.clock .pointor {
+    position: absolute;
+    left: 75px;
+    top: 75px;
+    transform: translate(-50%, -100%);
+    transform-origin: center top;
+    border-radius: 0 0 50% 50%;
+}
+.clock .hour {width: 5px; height: 30px; background: blue;}
+.clock .minute {width: 3px; height: 40px; background: green;}
+.clock .second {width: 1px; height: 55px; background: red;}
+
+.clock .circ {
+    position: absolute;
+    left: 75px;
+    top: 75px;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #000;
+}
+
+
+
+/* paper */
+.paper h1 {
+    border-bottom: solid 2px #191970;
+    font-size: 30px;
+    color: #191970;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 20px 0;
+    padding: 0;
+    word-break: break-word;
+}
+.paper h2 {
+    color: #169fe6;
+    font-family: "Comic Sans MS" !important;
+    line-height: 50px;
+}
+.paper blockquote {
+    border-left: 2px solid #a6b3bf;
+    margin: 0;
+    padding-left: 10px;
+    color: #555;
+}
+.paper blockquote p {
+    color: #5c6370;
+    font-style: italic;
+    font-size: 14px;
+    font-family: 'Source Code Pro', Menlo, Consolas, Monaco, monospace !important;
+    line-height: 1.5;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.paper hr {
+    margin: 5px 0;
+    border: 1px solid #eee;
+}
+.paper p,
+.paper li {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: 'NotoSans-Regular', Arial, sans-serif;
+}
+.paper ul {
+    padding-left: 40px;
+}
+.paper ul li {
+    list-style: auto;
+    padding-left: 10px;
+}
+.paper ol {
+    padding-left: 40px;
+}
+.paper ol li {
+    list-style: circle;
+    padding-left: 10px;
+}
+.paper .p-img {
+    text-align: center;
+}
+.paper img {
+    overflow: cover;
+}
